@@ -29,7 +29,6 @@ def book_create_view(request):
         })
     elif request.method == 'POST':
         form = BookForms(data=request.POST)
-        print(form)
         if form.is_valid():
             book = Guestbook.objects.create(
                 text=form.cleaned_data['text'],

@@ -8,20 +8,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Guest Book{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
     {% block styles %}{% endblock %}
 </head>
 <body>
 <nav class="navbar">
     <div class="container">
         <ul class="menu">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'book_create_view' %}">Add Book</a></li>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'book_create_view' %}">Добавить новую</a></li>
 
             {% block menu %}{% endblock %}
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container mt-5">
     {% block content %}{% endblock %}
 </div>
 </body>

@@ -3,15 +3,26 @@
 {% block title %}-- Welcome to Guest Book --{% endblock %}
 
 {% block content %}
-    <h1>Записи:</h1>
+    <h1>Гостевая книга:</h1>
      <p>{{ book.text }}</p>
 
     {% for book in books %}
-        <h3>{{ book.pk }}. <a href="{% url "book_view" book.pk %}">{{ book.author }}</a></h3>
-        <p>{{ book.author }} | {{ book.created_at|date:"d.m.Y H:i:s" }}</p>
-        <p>{{ book.text }}</p>
-        <p>Published at: {{ book.publish_at|date:"d.m.Y H:i:s" }}</p>
-        <p><a href="{% url 'book_update_view' book.pk %}">Update</a></p>
-        <p><a href="{% url 'book_delete' book.pk %}">Delete</a></p>
+     <div class="card mb-4">
+  <div class="card-header bg-primary text-light">
+    Запись гостевой книги №{{ book.pk }}
+       <a href="{% url 'book_update_view' book.pk %}"><i class="fas fa-edit"></i></a>
+      <a href="{% url 'book_delete' book.pk %}"><i class="fas fa-trash-alt"></i></a>
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-title" ><b>Автор: {{ book.author }}</b> </h5>
+    <h5 class="card-title"><b>E-mail: {{ book.email }}</b> </h5>
+    <p class="card-text">{{ book.text }}</p>
+    <a href="{% url 'book_update_view' book.pk %}" class="btn btn-primary">Update</a> <a href="{% url 'book_delete' book.pk %}" class="btn btn-primary">Delete</a>
+  </div>
+</div>
+
     {% endfor %}
 {% endblock %}
+
+
