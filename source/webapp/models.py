@@ -21,5 +21,5 @@ class Guestbook(models.Model):
         return "{}. {}".format(self.pk, self.author)
 
     class Meta:
-        verbose_name = 'Статья'
-        verbose_name_plural = 'Статьи'
+        verbose_name = 'Запись'
+        verbose_name_plural = 'Записи'
