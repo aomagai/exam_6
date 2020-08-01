@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Delete Book{% endblock %}
 {% block menu %}
-    <li><a href="{% url 'book_view' book.pk %}">View</a></li>
+    <li><a href="{% url 'book_view' book.pk %}">Просмотр</a></li>
 {% endblock %}
 {% block content %}
-    <h1>Are you sure want to delete article "{{ book }}"?</h1>
+    <h1>Вы уверине что хотите удалить эту запись?</h1>
+    <p><b>ID:</b> {{ book.pk }}</p>
+    <p><b>Автор:</b> {{ book.author }}</p>
+    <p><b>Текст:</b> {{ book.text }}</p>
+    <p><b>E-mail:</b> {{ book.email }}</p>
     <form method="POST" action="{% url "book_delete" book.pk %}" class="text-center">
         {% csrf_token %}
-        <p><input class="knopka" type="submit" value="Confirm"></p>
-        <p><a href="{% url "index"%}" class="knopka">Cancel</a></p>
+        <p><input class="btn btn-primary" type="submit" value="Удалить"></p>
+        <p><a href="{% url "index"%}" class="btn btn-primary">Отменить</a></p>
     </form>
 {% endblock %}
 
