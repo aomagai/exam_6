@@ -12,7 +12,7 @@
         <p>{{ book.author }} | {{ book.created_at|date:"d.m.Y H:i:s" }}</p>
         <p>{{ book.text }}</p>
         <p>Published at: {{ book.publish_at|date:"d.m.Y H:i:s" }}</p>
-{#        <p><a href="{% url 'article_update' article.pk %}">Update</a></p>#}
+        <p><a href="{% url 'book_update_view' book.pk %}">Update</a></p>
 {#        <p><a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
     {% endfor %}
 {% endblock %}

@@ -43,32 +43,26 @@ def book_create_view(request):
     else:
         return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
 
-def article_update_view(request, pk):
+def book_update_view(request, pk):
     book = get_object_or_404(Guestbook, pk=pk)
     if request.method == "GET":
         form = BookForms(initial={
-            'title': book.title,
+            'email': book.email,
             'text': book.text,
-            'author': book.author,
-            'status': book.status,
-            'publish_at': make_naive(book.publish_at)\
-                .strftime(BROWSER_DATETIME_FORMAT)
+            'author': book.author
         })
         return render(request, 'book_update.html', context={
             'form': form,
-            'article': book
+            'book': book
         })
     elif request.method == 'POST':
         form = BookForms(data=request.POST)
         if form.is_valid():
-            # Article.objects.filter(pk=pk).update(**form.cleaned_data)
-            book.title = form.cleaned_data['title']
+            book.email = form.cleaned_data['email']
             book.text = form.cleaned_data['text']
             book.author = form.cleaned_data['author']
-            book.status = form.cleaned_data['status']
-            book.publish_at = form.cleaned_data['publish_at']
             book.save()
-            return redirect('book_view', pk=book.pk)
+            return redirect('index')
         else:
             return render(request, 'book_update.html', context={
                 'book': book,
@@ -76,3 +70,14 @@ def article_update_view(request, pk):
             })
     else:
         return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
+
+def book_delete_view(request, pk):
+    book = get_object_or_404(Guestbook, pk=pk)
+    if request.method == 'GET':
+       return render(request, 'delete.html', context={'book': book})
+    elif request.method == 'POST':
+        book.delete()
+        return redirect('index')
+
+
+
