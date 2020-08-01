@@ -7,12 +7,11 @@
      <p>{{ book.text }}</p>
 
     {% for book in books %}
-        <h3><a href="{% url "book_view" book.pk %}">{{ book.author }}</a></h3>
-        <p>Статус: ({{ book.status }} | {{ book.get_status_display }})</p>
+        <h3>{{ book.pk }}. <a href="{% url "book_view" book.pk %}">{{ book.author }}</a></h3>
         <p>{{ book.author }} | {{ book.created_at|date:"d.m.Y H:i:s" }}</p>
         <p>{{ book.text }}</p>
         <p>Published at: {{ book.publish_at|date:"d.m.Y H:i:s" }}</p>
         <p><a href="{% url 'book_update_view' book.pk %}">Update</a></p>
-{#        <p><a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
+        <p><a href="{% url 'book_delete' book.pk %}">Delete</a></p>
     {% endfor %}
 {% endblock %}

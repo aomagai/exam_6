@@ -29,13 +29,14 @@ def book_create_view(request):
         })
     elif request.method == 'POST':
         form = BookForms(data=request.POST)
+        print(form)
         if form.is_valid():
             book = Guestbook.objects.create(
                 text=form.cleaned_data['text'],
                 author=form.cleaned_data['author'],
-                status=form.cleaned_data['status'],
+                email=form.cleaned_data['email']
             )
-            return redirect('book_view', pk=book.pk)
+            return redirect('index')
         else:
             return render(request, 'book_create.html', context={
                 'form': form
